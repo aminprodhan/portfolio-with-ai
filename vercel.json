@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "./vercel-build.sh",
-  "outputDirectory": "dist/client",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/public",
   "framework": "vite",
   "functions": {
     "api/*.js": {
@@ -46,5 +46,11 @@
         }
       ]
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "APP_ENV": "production"
+    }
+  }
 }
