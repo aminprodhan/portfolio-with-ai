@@ -1,14 +1,12 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import path from "path";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
-   
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
@@ -48,22 +46,6 @@ app.use((req, res, next) => {
     res.status(status).json({ message });
     throw err;
   });
-
-  const clientTemplate = path.resolve(
-          import.meta.dirname,
-          "..",
-          "client",
-          "index.html",
-);
-
-  // const distPath = path.resolve(
-  //     import.meta.dirname,
-  //     "..",
-  //     "dist",
-  //     "public",
-  //   );
-  // console.log(distPath);
-  
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
